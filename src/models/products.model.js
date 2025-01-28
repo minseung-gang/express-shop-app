@@ -8,6 +8,10 @@ const productsSchema = mongoose.Schema({
   slug: {
     type: String,
   },
+  desc: {
+    type: String,
+    required: true,
+  },
   category: {
     type: String,
     required: true,
@@ -18,6 +22,7 @@ const productsSchema = mongoose.Schema({
   },
   image: {
     type: String,
+    required: true,
   },
 })
 
