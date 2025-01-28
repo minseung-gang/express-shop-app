@@ -1,8 +1,9 @@
+import ResizeImg from 'resize-img'
 import { Category } from '../models/categories.model.js'
 import { Product } from '../models/products.model.js'
 import fs from 'fs-extra'
 
-export async function getCategories(req, res, next) {
+export async function renderAddProductPage(req, res, next) {
   try {
     const categories = await Category.find()
 
@@ -59,6 +60,88 @@ export async function postProduct(req, res, next) {
 
     req.flash('success', '상품이 추가되었습니다.')
     res.redirect('/admin/products')
+  } catch (err) {
+    next(err)
+  }
+}
+
+export async function deleteProduct(req, res, next) {
+  const id = req.params.id
+  const path = 'src/public/product-images/' + id
+  try {
+    await Product.findByIdAndDelete(id)
+    await fs.remove(path)
+    req.flash('success', '상품이 삭제되었습니다.')
+    res.redirect('back')
+  } catch (err) {
+    next(err)
+  }
+}
+
+export async function getProduct(req, res, next) {
+  try {
+    const categories = await Category.find()
+    const { _id, title, desc, slug, category, price, image } =
+      await Product.findById(req.params.id)
+    const galleryDir = 'src/public/product-images/' + _id + '/gallery/thumbs'
+    const galleryImages = await fs.readdir(galleryDir)
+
+    return res.render('admin/edit-product', {
+      id: _id,
+      title,
+      desc,
+      slug,
+      categories,
+      category: category.replace(/\s+/g, '-').toLowerCase(),
+      price,
+      galleryImages,
+      image,
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
+export async function postThumbImage(req, res, next) {
+  const productImage = req.files.file
+  const id = req.params.id
+  const path =
+    'src/public/product-images/' + id + '/gallery/' + req.files.file.name
+  const thumbsPath =
+    'src/public/product-images/' + id + '/gallery/thumbs/' + req.files.file.name
+
+  try {
+    // 원본 이미지 폴더에 넣어주기
+    await productImage.mv(path)
+
+    const buf = await ResizeImg(fs.readFileSync(path), {
+      width: 100,
+      height: 100,
+    })
+
+    fs.writeFileSync(thumbsPath, buf)
+
+    res.sendStatus(200)
+  } catch (err) {
+    next(err)
+  }
+}
+
+export async function deleteThumbImage(req, res, next) {
+  const id = req.params.id
+  const imageId = req.params.imageId
+  const originalImage =
+    'src/public/product-images/' + id + '/gallery/' + imageId
+  const thumbImage =
+    'src/public/product-images/' + id + '/gallery/thumbs/' + imageId
+  console.log('오리지날 이미지경로', originalImage)
+  console.log('썸네일 이미지 경로', thumbImage)
+
+  try {
+    await fs.remove(originalImage)
+    await fs.remove(thumbImage)
+    req.flash('success', '이미지가 삭제되었습니다.')
+    res.redirect('/admin/products/' + id + '/edit')
   } catch (err) {
     next(err)
   }
