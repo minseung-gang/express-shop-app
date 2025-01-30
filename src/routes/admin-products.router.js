@@ -8,7 +8,7 @@ import {
   getProduct,
   postThumbImage,
   deleteThumbImage,
-} from '../controllers/product.controller.js'
+} from '../controllers/admin-product.controller.js'
 
 export const adminProductsRouter = express.Router()
 
