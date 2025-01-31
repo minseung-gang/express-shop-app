@@ -61,29 +61,37 @@
 <% } else { %>
 <h3>장바구니가 비어있습니다.</h3>
 
+<% } %>
 <script>
-  function requestPay() {
-    IMP.request_pay(
-      {
-        pg: '9810030929',
-        pay_method: 'card',
-        merchant_uid: 'order_no_' + new Date().getTime(),
-        name: '테스트 상품',
-        amount: 100,
-        buyer_email: 'user@example.com',
-        buyer_name: '홍길동',
-        buyer_tel: '010-1234-5678',
-      },
-      function (rsp) {
-        if (rsp.success) {
-          alert(
-            '결제 요청이 완료되었습니다. 결제 상태는 자동으로 업데이트됩니다.'
-          )
-        } else {
-          alert('결제 실패: ' + rsp.error_msg)
+  document.addEventListener('DOMContentLoaded', function () {
+    const IMP = window.IMP
+    IMP.init('imp45156108')
+    window.requestPay = function () {
+      IMP.request_pay(
+        {
+          channelKey: 'channel-key-4f63c96a-2cb7-4a59-a0bd-90a1faacc61c',
+          pay_method: 'card',
+          merchant_uid: 'order_no_' + new Date().getTime(),
+          name: '주문명:결제테스트',
+          amount: 100,
+          buyer_email: 'test@portone.io',
+          buyer_name: '구매자이름',
+          buyer_tel: '010-1234-5678',
+          buyer_addr: '서울특별시 강남구 삼성동',
+          buyer_postcode: '123-456',
+          m_redirect_url: 'http://localhost:4000/cart/checkout/complete',
+        },
+        function (rsp) {
+          if (rsp.success) {
+            alert('결제 요청이 완료되었습니다.')
+            window.location.href =
+              'http://localhost:4000/cart/checkout/complete'
+          } else {
+            alert('결제 실패: ' + rsp.error_msg)
+          }
         }
-      }
-    )
-  }
+      )
+    }
+  })
 </script>
-<% } %> <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>
