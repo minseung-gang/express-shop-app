@@ -5,7 +5,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { usersRouter } from './routes/users.js'
 import passport from './config/passport.js'
-import cookieSession from 'cookie-session'
+/* import cookieSession from 'cookie-session' */
+import session from 'express-session'
 import config from 'config'
 import flash from 'connect-flash'
 import { mainRouter } from './routes/main.router.js'
@@ -22,7 +23,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const serverConfig = config.get('server')
 
-app.use(
+/* app.use(
   cookieSession({
     name: 'cookie-session-name',
     keys: [process.env.COOKIE_ENCRYPTION_KEY],
@@ -41,7 +42,19 @@ app.use(function (request, response, next) {
     }
   }
   next()
-})
+}) */
+app.use(
+  session({
+    secret: process.env.COOKIE_ENCRYPTION_KEY,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+    },
+    name: 'shop-app-cookie',
+    resave: false,
+    saveUninitialized: false,
+  })
+)
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -76,8 +89,8 @@ app.use((req, res, next) => {
 app.use('/', mainRouter)
 app.use('/auth', usersRouter)
 app.use('/admin/categories', adminCategoryRouter)
-app.use('/admin/products', adminProductsRouter)
 app.use('/products', productsRouter)
+app.use('/admin/products', adminProductsRouter)
 app.use('/cart', cartRouter)
 
 app.use((err, req, res, next) => {
