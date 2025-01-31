@@ -94,3 +94,8 @@ export function deleteCartItem(req, res) {
   req.flash('success', '장바구니가 비워졌습니다.')
   res.redirect('back')
 }
+
+export function clearCartAfterPayment(req, res) {
+  delete req.session.cart
+  res.redirect('/products')
+}
