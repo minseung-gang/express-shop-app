@@ -1,19 +1,37 @@
 # 📦 Node.js 프로젝트
 
-이 프로젝트는 **Node.js를 학습하기 위한 목적으로 개발**되었습니다.  
-Express를 기반으로 한 RESTful 구조를 활용하여 **사용자 인증, 상품 관리, 카테고리 관리** 등의 기능을 구현하였으며,  
-실제 웹 서비스 개발에 필요한 **세션 관리, 파일 업로드, 이미지 최적화** 등 다양한 기술을 경험할 수 있습니다.
+<div align="center">
+  
+이 프로젝트는 **Node.js를 학습하기 위한 목적으로 개발**되었습니다.<br>
+
+Express를 기반으로 한 RESTful 구조를 활용하여 **사용자 인증, 상품 관리, 카테고리 관리** 등의 기능을 구현하였습니다<br>
+
+</div>
 
 ---
+<br>
+
+## 개발 스택
+
+### Backend 
+- Nodejs
+- Express
+- mongoDB
+- mongoose
+<br>
 
 ## 🚀 주요 기능
 
 ### 1️⃣ 사용자 인증 및 로그인
 - **소셜 로그인 지원**
   - ✅ **카카오 로그인**
-  - ✅ **구글 로그인**
+  - ✅ **구글 로그인** 
+<br>
+
 - **일반 로그인**
   - ✉️ **이메일과 비밀번호**를 통한 직접 로그인 지원
+<br> 
+
 - **인증 기능 구현**
   - 🔐 `passport` 라이브러리 사용 → 인증 로직 관리
   - 📦 `express-session` 라이브러리 사용 → 세션 관리
@@ -57,3 +75,18 @@ Express를 기반으로 한 RESTful 구조를 활용하여 **사용자 인증, �
 - 🔒 **관리자 권한**이 있어야만 접근 가능
 
 ---
+
+<br>
+
+## Testing
+
+|홈|로그인|
+|:---:|:---:|
+|<img src="https://github.com/user-attachments/assets/1723b8f0-3031-4ade-b58a-f5d7b4672f03" width="500px" height="340px"> https://youtu.be/TU8AC9ZA_Pg|<img src="https://github.com/user-attachments/assets/5a53a507-1646-4eac-a760-83a2eb385384" width="500px" height="340px">https://youtu.be/TGe3VFwa3kk|
+|상품추가|카테고리추가|
+|<img src="https://github.com/user-attachments/assets/fda35328-a522-4445-9a16-6dad7a541055" width="500px" height="340px">https://youtu.be/gTZt2k71S7o|<img src="https://github.com/user-attachments/assets/6f8fcefa-be93-4ca2-9b5d-7fce7a254bfb" width="500px" height="340px">https://youtu.be/NRs491XSzr4|
+|장바구니|결제|
+|<img src="https://github.com/user-attachments/assets/ab236e6d-6425-41c8-a292-521f1416232c" width="500px" height="340px">https://youtu.be/csSAcrBN0_o|<img src="https://github.com/user-attachments/assets/6b189384-4ef2-45c2-b06d-cee2d079a482" width="500px" height="340px">https://youtu.be/fOpZMZW-U4Q|
+
+
+
