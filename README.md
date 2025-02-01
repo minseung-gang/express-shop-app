@@ -29,7 +29,7 @@ Express를 기반으로 한 RESTful 구조를 활용하여 **사용자 인증, �
 <br>
 
 - **일반 로그인**
-  - ✉️ **이메일과 비밀번호**를 통한 직접 로그인 지원
+  - **이메일과 비밀번호**를 통한 직접 로그인 지원
 <br> 
 
 - **인증 기능 구현**
@@ -49,13 +49,12 @@ Express를 기반으로 한 RESTful 구조를 활용하여 **사용자 인증, �
 ### 3️⃣ 관리자 전용 상품 페이지
 - 🔒 **관리자 권한**이 있는 사용자만 접근 가능
 - 🗂️ 상품 목록 관리 및 편집 기능 제공
-- 🚫 일반 유저는 접근 불가 (**관리자 권한 필수**)
+- ✅ **상품 활성화/비활성화** 상태 관리 가능
 
 ---
 
 ### 4️⃣ 관리자 전용 카테고리 페이지
 - 📂 카테고리 목록 관리
-- ➕ 새로운 카테고리 등록 기능
 - ✏️ 카테고리 이름 수정 및 삭제 기능
 - 🚫 일반 유저는 접근 불가 (**관리자 권한 필수**)
 
@@ -71,8 +70,13 @@ Express를 기반으로 한 RESTful 구조를 활용하여 **사용자 인증, �
 
 ---
 
-### 6️⃣ 장바구니 페이지
-- **상품 상세 페이지**에서 **"장바구니에 추가"** 버튼을 눌러 상품을 장바구니에 추가할 수 있음
+### 6️⃣ 관리자 전용 카테고리 생성 페이지
+- ➕ 새로운 카테고리 등록 기능
+
+---
+
+### 7️⃣ 장바구니 페이지
+- **상품 상세 페이지**에서 **"카트에 추가"** 버튼을 눌러 상품을 장바구니에 추가할 수 있음
 - 담은 상품은 **수량 조절(➕/➖)**, **개별 삭제(🗑️ Clear 버튼)**, **전체 삭제(🚀 모두 비우기 버튼)**로 관리 가능
 - 🔒 **관리자 권한**이 있어야만 접근 가능
 
@@ -85,7 +89,7 @@ Express를 기반으로 한 RESTful 구조를 활용하여 **사용자 인증, �
 |홈|로그인|
 |:---:|:---:|
 |<img src="https://github.com/user-attachments/assets/1723b8f0-3031-4ade-b58a-f5d7b4672f03" width="500px" height="340px"> https://youtu.be/TU8AC9ZA_Pg|<img src="https://github.com/user-attachments/assets/5a53a507-1646-4eac-a760-83a2eb385384" width="500px" height="340px">https://youtu.be/TGe3VFwa3kk|
-|상품추가|카테고리추가|
+|관리자-상품|관리자-카테고리|
 |<img src="https://github.com/user-attachments/assets/fda35328-a522-4445-9a16-6dad7a541055" width="500px" height="340px">https://youtu.be/gTZt2k71S7o|<img src="https://github.com/user-attachments/assets/6f8fcefa-be93-4ca2-9b5d-7fce7a254bfb" width="500px" height="340px">https://youtu.be/NRs491XSzr4|
 |장바구니|결제|
 |<img src="https://github.com/user-attachments/assets/ab236e6d-6425-41c8-a292-521f1416232c" width="500px" height="340px">https://youtu.be/csSAcrBN0_o|<img src="https://github.com/user-attachments/assets/6b189384-4ef2-45c2-b06d-cee2d079a482" width="500px" height="340px">https://youtu.be/fOpZMZW-U4Q|
